@@ -57,8 +57,6 @@ export async function PATCH(
       },
     });
 
-    console.log(storeByUserId, "storebyuserid");
-
     if (!storeByUserId) {
       return new NextResponse("Unauthorized", { status: 403 });
     }

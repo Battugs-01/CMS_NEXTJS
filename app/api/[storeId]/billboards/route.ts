@@ -9,7 +9,7 @@ export async function POST(
   try {
     const { userId } = auth();
     const body = await req.json();
-    console.log(params.storeId, "sda");
+
     const { label, imageUrl } = body;
 
     if (!userId) {
@@ -49,8 +49,6 @@ export async function POST(
       },
     });
 
-    console.log(billboard, "bill");
-
     return NextResponse.json(billboard);
   } catch (error) {
     console.log("[BILLBOARD]", error);
@@ -63,7 +61,8 @@ export async function GET(
   { params }: { params: { storeId: string } }
 ) {
   try {
-    if (params.storeId) {
+    console.log(params, "sd");
+    if (!params.storeId) {
       return new NextResponse("StoreId is required!", { status: 400 });
     }
 
