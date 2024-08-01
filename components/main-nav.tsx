@@ -19,12 +19,14 @@ export function MainNav({
     {
       label: "Billboard",
       href: `/${params.storeId}/billboards`,
-      active: pathname === `/${params.storeId}/billboards`,
+      active:
+        pathname === `/${params.storeId}/billboards` &&
+        pathname.includes("billboards"),
     },
     {
       label: "Categories",
       href: `/${params.storeId}/categories`,
-      active: pathname === `/${params.storeId}/categoies`,
+      active: pathname === `/${params.storeId}/categories`,
     },
     {
       label: "Settings",
