@@ -6,6 +6,7 @@ interface CategoryPageProps {
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
+  console.log(params.categoryId, "sda");
   const category = await prismadb.category.findUnique({
     where: {
       id: params.categoryId,
@@ -17,8 +18,6 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
       storeId: params.storeId,
     },
   });
-
-  console.log(billboards, "bill");
 
   return (
     <div className="flex-col ">

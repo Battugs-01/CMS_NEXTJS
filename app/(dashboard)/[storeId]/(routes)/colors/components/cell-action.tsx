@@ -12,12 +12,12 @@ import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { CategoriesColumn } from "./columns";
+import { ColorColumn } from "./columns";
 import axios from "axios";
 import AlertModal from "@/components/modal/alert-modal";
 
 interface CellActionProps {
-  data: CategoriesColumn;
+  data: ColorColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -26,7 +26,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Category ID copied to clipboard");
+    toast.success("Color ID copied to clipboard");
   };
 
   const [loading, setLoading] = useState(false);
@@ -35,13 +35,11 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/colors/${data.id}`);
       router.refresh();
-      toast.success("Category deleted");
+      toast.success("Color deleted");
     } catch {
-      toast.error(
-        "Make sure you removed all products using this category first."
-      );
+      toast.error("Make sure you removed all produncts using this size first.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -71,9 +69,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             className="m-0 p-0 my-0"
-            onClick={() =>
-              router.push(`/${params.storeId}/categories/${data.id}`)
-            }
+            onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}
           >
             <Edit className="mr-2 h-4 m-4" />
             Update
